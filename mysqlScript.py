@@ -1,5 +1,5 @@
 class mysqlQuery():
-    """Simple MySQL queries with prepared statements, to prevent SQL injection. Intended for data dashboards. 
+    """Simple MySQL queries with escaping, to prevent SQL injection. Intended for data dashboards, not for data management. 
     Adjust methods as you please. Returns a numpy array"""
 
     def __init__(self):
