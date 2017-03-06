@@ -1,8 +1,9 @@
 class mysqlQuery():
-    """MySQL queries with escaping, to prevent SQL injection. Returns a numpy array"""
+    """Simple MySQL queries with prepared statements, to prevent SQL injection. Intended for data dashboards. 
+    Adjust methods as you please. Returns a numpy array"""
 
     def __init__(self):
-        """Initial function. Opens the connection"""
+        """Initial function. Opens th connection"""
         global np
         import numpy as np
         global traceback
@@ -11,7 +12,7 @@ class mysqlQuery():
         self.db = pymysql.connect(host = '',    # your host, usually localhost
                              user = '',         # your username
                              passwd = '',  # your password
-                             db = '')
+                             db = '') #Your database
         self.mysqlString = ''
 
 
@@ -39,9 +40,25 @@ class mysqlQuery():
         return self
 
     def select(self, select):
-        """Use this method with other methods like table method"""
+        """Use this SELECT method with other methods like table method. Must initiate the string"""
         try:
-            self.mysqlString += 'SELECT %s' %(select)
+            if len(self.mysqlString) == 0:
+                self.mysqlString += 'SELECT %s' %(select)
+            else:
+                print 'Error: Bad query call in SELECT method.'
+                print 'Check SQL string: %s' %(self.mysqlString)
+            return self
+        except Exception as err:
+            traceback.print_exc()
+
+    def update(self, update):
+        """Use this UPDATE method with other methods like table method. Must initiate the string. Currently this method is unavailable due to SQL injection concerns"""
+        try:
+            if len(self.mysqlString) == 0:
+                self.mysqlString += 'UPDATE %s' %(select)
+            else:
+                print 'Error: Bad query call in UPDATE method.'
+                print 'Check SQL string: %s' %(self.mysqlString)
             return self
         except Exception as err:
             traceback.print_exc()
