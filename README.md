@@ -6,10 +6,10 @@ USE THIS SCRIPT WITH CAUTION. IF YOU DO NOT HAVE ANY EXPERIENCE WITH SQL INJECTI
 
 Example:
 
-data = mysqlQuery().select('something').table('someTable').where('something', 'islogical', 'toSomething').where('someOtherThing', 'isLogical', 'TosomeOtherThing').execute()
+query = mysqlQuery().select('something').table('someTable').where('something', 'islogical', 'toSomething').where('someOtherThing', 'isLogical', 'TosomeOtherThing').execute()
 
 3rd Step: Extract data.
 
-data = data.data
+data = query.data
 
 THE INTENTTION FOR THIS SCRIPT IS TO PROVIDE EASY QUERY STATEMENTS FOR PYTHON DASHBAORDS AND MACHINE LEARNING
