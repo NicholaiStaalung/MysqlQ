@@ -3,7 +3,9 @@ USE THIS SCRIPT WITH CAUTION. IF YOU DO NOT HAVE ANY EXPERIENCE WITH SQL INJECTI
 1st Step: Setup Config.py. Use your MySQL credentials. Update directly in file
 
 2nd Step: Perform QUERY.
+
 Example:
+
 data = mysqlQuery().select('something').table('someTable').where('something', 'islogical', 'toSomething').where('someOtherThing', 'isLogical', 'TosomeOtherThing').execute()
 
 3rd Step: Extract data.
