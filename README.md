@@ -7,6 +7,7 @@ Example:
 data = mysqlQuery().select('something').table('someTable').where('something', 'islogical', 'toSomething').where('someOtherThing', 'isLogical', 'TosomeOtherThing').execute()
 
 3rd Step: Extract data.
+
 data = data.data
 
-THE INTENTTION FOR THIS SCRIPT IS TO PROVIDE EASY QUERY STATEMENTS FOR PYTHON DASHBAORDS AND MACHINE LEARNING 
+THE INTENTTION FOR THIS SCRIPT IS TO PROVIDE EASY QUERY STATEMENTS FOR PYTHON DASHBAORDS AND MACHINE LEARNING
