@@ -1,20 +1,21 @@
 class mysqlQuery():
-    """Simple MySQL queries with escaping, to prevent SQL injection. Intended for data dashboards, not for data management. 
+    """Simple MySQL queries with escaping, to prevent SQL injection. Intended for data dashboards, not for data management.
     Adjust methods as you please. Returns a numpy array"""
 
     def __init__(self):
-        """Initial function. Opens th connection"""
+        """Initial function. Opens the connection"""
         global np
         import numpy as np
         global traceback
         import traceback
         import pymysql
-        self.db = pymysql.connect(host = '',    # your host, usually localhost
-                             user = '',         # your username
-                             passwd = '',  # your password
-                             db = '') #Your database
-        self.mysqlString = ''
+        import config as cf
 
+        self.db = pymysql.connect(host = cf.config['host'],    # your host, usually localhost
+                             user = cf.config['username'],         # your username
+                             passwd = cf.config['password'],  # your password
+                             db = cf.config['database']) #Your database
+        self.mysqlString = ''
 
     def getFullTable(self, tableName):
         """Create a Table Query"""
@@ -97,7 +98,10 @@ class mysqlQuery():
                 x = map(list, list(results))              # change the type
                 x = sum(x, [])                            # flatten
                 data = np.array(x)
-                self.data = data.reshape(num_rows, -1)
+                data = data.reshape(num_rows, -1)
+                desc = cur.description
+                clm = np.array([item[0].encode('utf-8') for item in desc])[np.newaxis, :]
+                self.data = np.vstack((clm, data))
                 self.db.close()
                 return self
             except Exception as err:

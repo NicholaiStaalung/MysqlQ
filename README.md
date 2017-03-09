@@ -1,4 +1,8 @@
-
-Example use:  
-view = mysqlQuery().select('someView').table('someTable').where('something', 'isLogical', 'somethingElse').execute()  
-"Beware of user input. This is not a perfect script for portecting against attackers. Carefully filter and check what ypu input into the statements"  
+USE THIS SCRIPT WITH CAUTION. IF YOU DO NOT HAVE ANY EXPERIENCE WITH SQL INJECTION THEN DO NOT USE WITH USER INPUT 
+1st Step: Setup Config.py. Use your MySQL credentials. Update directly in file 
+2nd Step: Perform QUERY. 
+Example: 
+data = mysqlQuery().select('something').table('someTable').where('something', 'islogical', 'toSomething').where('someOtherThing', 'isLogical', 'TosomeOtherThing').execute() 
+3rd Step: Extract data. 
+data = data.data 
+THE INTENTTION FOR THIS SCRIPT IS TO PROVIDE EASY QUERY STATEMENTS FOR PYTHON DASHBAORDS AND MACHINE LEARNING 
