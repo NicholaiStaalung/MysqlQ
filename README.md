@@ -1,15 +1,24 @@
+# MysqlQ 
+
+- Handler for mysql queries, intended for data dashboards. (Not data management)
+
 USE THIS SCRIPT WITH CAUTION. IF YOU DO NOT HAVE ANY EXPERIENCE WITH SQL INJECTION THEN DO NOT USE WITH USER INPUT. THE SCRIPT REQUIRES SOME EXPERIENCE WITH MySQL SYNTAX.
 
-1st Step: Setup Config.py. Use your MySQL credentials. Update directly in file
+## 1st Step: Setup Config.py. 
 
-2nd Step: Perform QUERY.
+Use your MySQL credentials. Update directly in file
+
+## 2nd Step: Perform QUERY.
 
 Example:
 
+'''
 query = mysqlQuery().select('something').table('someTable').where('something', 'islogical', 'toSomething').where('someOtherThing', 'isLogical', 'TosomeOtherThing').execute()
+'''
 
-3rd Step: Extract data.
+## 3rd Step: Extract data.
 
+'''
 data = query.data
+'''
 
-THE INTENTTION FOR THIS SCRIPT IS TO PROVIDE EASY QUERY STATEMENTS FOR PYTHON DASHBAORDS AND MACHINE LEARNING
