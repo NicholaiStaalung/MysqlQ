@@ -1,6 +1,6 @@
 config = dict(
-    host = '',
-    username = '',
-    password = '',
-    database = ''
+    host = 'localhost',
+    username = 'root',
+    password = 'secret',
+    database = 'crfd'
 )

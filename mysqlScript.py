@@ -84,7 +84,7 @@ class mysqlQuery():
         except Exception as err:
             traceback.print_exc()
 
-    def execute(self):
+    def execute(self, writeColumns=True):
         """Executing the SQL statement"""
         if ';' in self.mysqlString or '-' in self.mysqlString:
             print 'Error: Possible SQL injection. Escaping the procedure'
@@ -95,13 +95,19 @@ class mysqlQuery():
                 cur.execute(self.mysqlString)
                 results = cur.fetchall()
                 num_rows = int(cur.rowcount)
-                x = map(list, list(results))              # change the type
-                x = sum(x, [])                            # flatten
-                data = np.array(x)
-                data = data.reshape(num_rows, -1)
-                desc = cur.description
-                clm = np.array([item[0].encode('utf-8') for item in desc])[np.newaxis, :]
-                self.data = np.vstack((clm, data))
+                data = np.array(['NO DATA'])
+                if num_rows == 0:
+                    writeColumns = False
+                else:
+                    x = map(list, list(results))              # change the type
+                    x = sum(x, [])                            # flatten
+                    data = np.array(x)
+                    data = data.reshape(num_rows, -1)
+                if writeColumns:
+                    desc = cur.description
+                    clm = np.array([item[0].encode('utf-8') for item in desc])[np.newaxis, :]
+                    data = np.vstack((clm, data))
+                self.data = data
                 self.db.close()
                 return self
             except Exception as err:
